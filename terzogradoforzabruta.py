@@ -2,24 +2,27 @@
 
 b = 4.5
 c = 3.5
+x = 0.3
+termine_noto = -3
+
 passaggi = 0
-i = 0.3
 massimo = 0.75
 incremento = 0.001
 approssimazione = 0.00001
-while i < massimo:
+
+
+while x < massimo:
     passaggi += 1
-    terzogrado = i ** 3
-    secondogrado = i ** 2
-    soluzione = abs(terzogrado + secondogrado * b + i * c + (-3)) #la presenza del termine -3 potrebbe far scaturire dei numeri con la virgola
-    if soluzione < approssimazione: 
+    terzogrado = x ** 3
+    secondogrado = x ** 2 * b
+    primogrado = x * c
+    soluzione = terzogrado + secondogrado + primogrado + termine_noto #la presenza del termine -3 potrebbe far scaturire dei numeri con la virgola
+
+    if abs(soluzione) < approssimazione: 
         break
     else:
-        i += incremento
+        x += incremento
         
-
-#for i in range(0,30.75,0.001): non funziona!!!
    
-   
-print(i)
-print(passaggi)
+print("la soluzione e' ", x)
+print("numero di passaggi con forza bruta ", passaggi)
