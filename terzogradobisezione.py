@@ -1,21 +1,27 @@
 # risoluzione equazione di 3 grado x^3 + 4.5 * x^2 + 3.5 * x -3 = 0 
 
-minimo = 0.3
+minimo = 0.30
 massimo = 0.75
 b = 4.5
 c = 3.5
+termine_noto = -3
 approssimazione = 0.00001
 passaggi = 0
-  
-while minimo < massimo:
+#calcolo automatico del valore minimo senza sottopassaggi
 
-    x = (minimo + massimo) / 2.
-    val = x ** 3 + 4.5 * x ** 2 + 3.5 * x - 3
-    min_val = minimo ** 3 + 4.5 * minimo ** 2 + 3.5 * minimo - 3
+min_val = (minimo ** 3) + (b * (minimo ** 2)) + (c * minimo) + termine_noto
+while minimo <= massimo:
 
-    if abs(val) < approssimazione:
+    x = (minimo + massimo) / 2
+    terzogrado = x ** 3
+    secondogrado = x ** 2 * b
+    primogrado = x * c
+    soluzione = terzogrado + secondogrado + primogrado + termine_noto
+
+
+    if abs(soluzione) <= approssimazione:
         break
-    elif val * min_val > 0:
+    elif soluzione * min_val >= 0:
         minimo = x
 
     else:
@@ -23,5 +29,5 @@ while minimo < massimo:
 
     passaggi += 1
 
-print(x)
-print(passaggi)
+print("la soluzione e' " , x)
+print("passaggi adoperati tramite il metodo bisezione", passaggi)
